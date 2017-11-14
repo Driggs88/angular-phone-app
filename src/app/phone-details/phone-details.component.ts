@@ -1,16 +1,32 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { PhoneService } from './../phone.service';
 
 @Component({
   selector: 'app-phone-details',
   templateUrl: './phone-details.component.html',
   styleUrls: ['./phone-details.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  providers: [PhoneService]
 })
 export class PhoneDetailsComponent implements OnInit {
+  phone: any;
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private phoneService: PhoneService
+  ) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.getPhoneDetails(params['id']);
+    });
   }
 
+  getPhoneDetails(id) {
+    this.phoneService.get(id)
+      .subscribe((phone) => {
+        this.phone = phone;
+      });
+  }
 }
