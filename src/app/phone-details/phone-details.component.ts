@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { PhoneService } from './../phone.service';
 
 @Component({
@@ -14,7 +14,8 @@ export class PhoneDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private phoneService: PhoneService
+    private phoneService: PhoneService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -29,4 +30,12 @@ export class PhoneDetailsComponent implements OnInit {
         this.phone = phone;
       });
   }
+  deletePhone() {
+  if (window.confirm('Are you sure?')) {
+    this.phoneService.remove(this.phone._id)
+      .subscribe(() => {
+        this.router.navigate(['']);
+      });
+  }
+}
 }
