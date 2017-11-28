@@ -8,12 +8,17 @@ import { PhoneDetailsComponent } from './phone-details/phone-details.component';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { PhoneService } from './phone.service';
+import { FileSelectDirective } from "ng2-file-upload";
+import { AddPhoneComponent } from './add-phone/add-phone.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     PhoneListComponent,
-    PhoneDetailsComponent
+    PhoneDetailsComponent,
+    FileSelectDirective,
+    AddPhoneComponent,
   ],
   imports: [
     BrowserModule,
