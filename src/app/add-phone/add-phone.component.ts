@@ -1,15 +1,14 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FileUploader } from "ng2-file-upload";
 
 @Component({
   selector: 'app-add-phone',
   templateUrl: './add-phone.component.html',
   styleUrls: ['./add-phone.component.css'],
-  encapsulation: ViewEncapsulation.None
 })
 export class AddPhoneComponent implements OnInit {
   uploader: FileUploader = new FileUploader({
-    url: `/phones/`
+    url: `/api/phones/`
   });
 
   newPhone = {
